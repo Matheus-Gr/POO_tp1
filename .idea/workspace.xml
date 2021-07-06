@@ -11,17 +11,6 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a588ba0c-902b-4f19-a695-8973c4f84cac" name="Default Changelist" comment="initial commit">
-      <change afterPath="$PROJECT_DIR$/resume.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Admin.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin.h" beforeDir="false" afterPath="$PROJECT_DIR$/Admin.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Seller.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Seller.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Seller.h" beforeDir="false" afterPath="$PROJECT_DIR$/Seller.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/accounts.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stock.txt" beforeDir="false" afterPath="$PROJECT_DIR$/stock.txt" afterDir="false" />
     </list>
@@ -57,6 +46,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
@@ -65,8 +55,6 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="CPPToolchains" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -84,9 +72,6 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
   </component>
@@ -102,8 +87,6 @@
       <workItem from="1625533501291" duration="3035000" />
       <workItem from="1625537217482" duration="4612000" />
       <workItem from="1625588371080" duration="3183000" />
-      <workItem from="1625592092661" duration="4754000" />
-      <workItem from="1625597237631" duration="10128000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1625524347776</created>
