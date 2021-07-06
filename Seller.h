@@ -21,6 +21,8 @@ private:
     string _password;
 
 public:
+    Seller(const string& name, const string& office, float salary, const string& userName, const string& password);
+
     void setName(string name);
     void setOffice(string office);
     void setSalary(float salary);

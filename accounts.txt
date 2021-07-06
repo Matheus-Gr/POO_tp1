@@ -1,3 +1,0 @@
-type:admin;user:admin;pass:admin;
-type:vet;user:otavio;pass:senhaimpossiveldesaber;
-type:seller;user:matheus;pass:senhafacil;
