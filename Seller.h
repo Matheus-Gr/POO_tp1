@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 
+
 using namespace std;
 
 class Seller
@@ -37,6 +38,7 @@ public:
     void getClientList();
     void removerProduto(string nomeProduto, int quantidade = 1);
     void getEstoque();
+    void productSale(char * product, int quantity = 1);
 };
 
 #endif //TP_I_SELLER_H
