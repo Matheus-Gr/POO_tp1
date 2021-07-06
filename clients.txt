@@ -1,0 +1,3 @@
+name:client1;address:streetfoda;phone:(31)2323-3324;
+name:client2;address:streetpinto;phone:(31)6666-6666;
+name:client3;address:bolafoda;phone:(31)7777-7777;
