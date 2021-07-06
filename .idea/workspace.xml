@@ -11,17 +11,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a588ba0c-902b-4f19-a695-8973c4f84cac" name="Default Changelist" comment="initial commit">
-      <change afterPath="$PROJECT_DIR$/test.cpp" afterDir="false" />
+    <list default="true" id="a588ba0c-902b-4f19-a695-8973c4f84cac" name="Default Changelist" comment="some refactoring">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Admin.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Seller.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Seller.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Seller.h" beforeDir="false" afterPath="$PROJECT_DIR$/Seller.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/accounts.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resume.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resume.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.txt" beforeDir="false" afterPath="$PROJECT_DIR$/stock.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +61,8 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\mathe\User\facul\POO\TP I" />
+      <recent name="C:\Users\mathe\User\facul\POO\TP I\lib" />
+      <recent name="C:\Users\mathe\User\facul\POO\TP I\database" />
     </key>
   </component>
   <component name="RunManager">
@@ -145,7 +139,14 @@
       <option name="project" value="LOCAL" />
       <updated>1625592201455</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="some refactoring">
+      <created>1625609773786</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1625609773786</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,6 +173,7 @@
     <MESSAGE value="creating txts" />
     <MESSAGE value="refactoring seller" />
     <MESSAGE value="initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+    <MESSAGE value="some refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="some refactoring" />
   </component>
 </project>
