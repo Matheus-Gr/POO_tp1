@@ -3,4 +3,4 @@ project(TP_I)
 
 set(CMAKE_CXX_STANDARD 98)
 
-add_executable(TP_I main.cpp Seller.cpp Seller.h Admin.cpp Admin.h)
+add_executable(TP_I main.cpp Seller.cpp Seller.h Admin.cpp Admin.h utils.cpp utils.h)
