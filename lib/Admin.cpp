@@ -9,20 +9,18 @@ Seller Admin::register_seller(const string& name, const string& office, float sa
                               const string& userName, const string& password) {
     Seller newSeller(name,office,salary,userName,password);
 
-    const char *accounts = "../accounts.txt";
+    const char *accounts = "../database/accounts.txt";
     FILE *file;
     file = fopen(accounts, "r+");
     fseek(file, 0, SEEK_END);
 
     stringstream ss;
-    ss << "seller " << name << " " << office << " " << salary << " " << userName << " " << password;
+    ss << userName << " " << password << " " << "/seller " << name << " " << office << " " << salary;
     string report = ss.str();
     fputs(report.c_str(), file);
     fputs("\n",file);
 
     fclose(file);
-
-
 
     return newSeller;
 }

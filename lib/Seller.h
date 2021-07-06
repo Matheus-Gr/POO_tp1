@@ -8,7 +8,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-
+#include <sstream>
 
 using namespace std;
 
@@ -32,7 +32,7 @@ public:
 
     string getName();
     string getOffice();
-    float getSalary();
+    float getSalary() const;
     string getUserName();
     string getPassword();
 

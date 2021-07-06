@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 #include <cstdio>
-#include "lib/Admin.h"
-#include "lib/utils.h"
+#include "Admin.h"
+#include "utils.h"
 using namespace std;
 
 int main() {

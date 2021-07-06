@@ -6,7 +6,23 @@
 #include "Seller.h"
 
 void Seller::registerClient(string name, string address, string phone) {
-    cout << name << endl << address << endl << phone << endl;
+    const char *accounts = "../database/accounts.txt";
+    FILE *file;
+    file = fopen(accounts, "r+");
+    fseek(file, 0, SEEK_END);
+
+    stringstream ss;
+    ss << "/seller " << name << " " << office << " " << salary;
+    string report = ss.str();
+    fputs(report.c_str(), file);
+    fputs("\n",file);
+
+    fclose(file);
+
+
+
+
+
 }
 
 void Seller::getClientList() {
@@ -22,7 +38,7 @@ string Seller::getName() {return _name;}
 
 string Seller::getOffice() { return _office; }
 
-float Seller::getSalary() { return _salary; }
+float Seller::getSalary() const { return _salary; }
 
 string Seller::getUserName() { return _userName; }
 
@@ -71,8 +87,6 @@ void Seller::productSale(char *product, int quantity) {
     fclose(arq);
     remove("../stock2.txt");
 }
-
-string Seller::getPassword() {return _password;}
 
 Seller::Seller(const string& name, const string& office, float salary, const string& userName, const string& password) {
     _name = name;
