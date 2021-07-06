@@ -12,14 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a588ba0c-902b-4f19-a695-8973c4f84cac" name="Default Changelist" comment="some refactoring">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/accounts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/database/accounts.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/clients.txt" beforeDir="false" afterPath="$PROJECT_DIR$/database/clients.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/stock.txt" beforeDir="false" afterPath="$PROJECT_DIR$/database/stock.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Admin.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Admin.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Seller.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Seller.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Seller.h" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Seller.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,21 +146,7 @@
       <option name="project" value="LOCAL" />
       <updated>1625609773786</updated>
     </task>
-    <task id="LOCAL-00008" summary="some refactoring">
-      <created>1625609917469</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1625609917469</updated>
-    </task>
-    <task id="LOCAL-00009" summary="some refactoring">
-      <created>1625609944175</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1625609944175</updated>
-    </task>
-    <option name="localTasksCounter" value="10" />
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
