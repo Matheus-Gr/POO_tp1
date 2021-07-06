@@ -60,8 +60,20 @@ void Seller::productSale(char *product, int quantity) {
                     cout <<produto << " ---> valor : " << price * quantity << endl;
                     cout << "confirmar compra(S ou N)?" << endl;
                     cin >> x;
-                    if (x == 'S' or 's') {
+                    if (x == 'S' or x=='s') {
                         qtd = qtd - quantity;
+                        const char *resume = "../database/resume.txt";
+                        FILE *file;
+                        file = fopen(resume, "r+");
+                        fseek(file, 0, SEEK_END);
+
+                        stringstream ss;
+                        ss <<quantity<< "x de " << product << " vendido por: " << price*quantity << "RS .";
+                        string report = ss.str();
+                        fputs(report.c_str(), file);
+                        fputs("\n",file);
+
+                        fclose(file);
                         cout << "successo!" << endl;
                     } else cout<<"compra cancelada com sucesso"<<endl;
                 }

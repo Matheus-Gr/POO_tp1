@@ -31,7 +31,7 @@ void Admin::register_product(const string& productName, float price, int quantit
 
     FILE *file, *temp;
     file = fopen(FILENAME, "r+");
-    file = fopen(TEMP, )
+//    file = fopen(TEMP, )
     fseek(file, 0, SEEK_END);
 
     stringstream ss;

@@ -16,7 +16,7 @@ int main() {
 
     Seller seller = admin.register_seller(name,office,salary,userName,password);
     seller.registerClient("tavin pica torta", "Rua do caralho, bairro da desgraca", "(31)98675-2831");
-    seller.productSale("maconha");
+    seller.productSale("maconha",10);
 
     admin.register_product("Piruzao",67.23,2);
     admin.addCash(10000);
