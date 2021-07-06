@@ -16,17 +16,6 @@ void Seller::getClientList() {
         ++numLines;
     }
 }
-
-void Seller::setName(string name) {_name = name;}
-
-void Seller::setOffice(string office) {_office = office;}
-
-void Seller::setSalary(float salary) {_salary = salary;}
-
-void Seller::setUserName(string userName) {_userName = userName;}
-
-void Seller::setPassword(string password) {_password = password;}
-
 string Seller::getName() {return _name;}
 
 string Seller::getOffice() {return _office;}
@@ -36,3 +25,12 @@ float Seller::getSalary() {return _salary;}
 string Seller::getUserName() {return _userName;}
 
 string Seller::getPassword() {return _password;}
+
+Seller::Seller(const string& name, const string& office, float salary, const string& userName, const string& password) {
+    _name = name;
+    _office = office;
+    _salary = salary;
+    _userName = userName;
+    _password = password;
+}
+
