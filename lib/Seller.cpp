@@ -5,24 +5,19 @@
 #include <cstring>
 #include "Seller.h"
 
-void Seller::registerClient(string name, string address, string phone) {
-    const char *accounts = "../database/accounts.txt";
+void Seller::registerClient(const string& name, const string& address, const string& phone) {
+    const char *clients = "../database/clients.txt";
     FILE *file;
-    file = fopen(accounts, "r+");
+    file = fopen(clients, "r+");
     fseek(file, 0, SEEK_END);
 
     stringstream ss;
-    ss << "/seller " << name << " " << office << " " << salary;
+    ss << name << "|" << address << "|" << phone;
     string report = ss.str();
     fputs(report.c_str(), file);
     fputs("\n",file);
 
     fclose(file);
-
-
-
-
-
 }
 
 void Seller::getClientList() {
@@ -46,8 +41,8 @@ string Seller::getPassword() { return _password; }
 
 void Seller::productSale(char *product, int quantity) {
     FILE *arq, *arqProv;
-    arq = fopen("../stock.txt", "r");
-    arqProv = fopen("../stock2.txt", "w");
+    arq = fopen("../database/stock.txt", "r");
+    arqProv = fopen("../database/stock2.txt", "w");
     int result;
     int n = 0;
     float price;
@@ -65,7 +60,7 @@ void Seller::productSale(char *product, int quantity) {
                     cout <<produto << " ---> valor : " << price * quantity << endl;
                     cout << "confirmar compra(S ou N)?" << endl;
                     cin >> x;
-                    if (x == 'S') {
+                    if (x == 'S' or 's') {
                         qtd = qtd - quantity;
                         cout << "successo!" << endl;
                     } else cout<<"compra cancelada com sucesso"<<endl;
@@ -77,15 +72,15 @@ void Seller::productSale(char *product, int quantity) {
     }
     fclose(arq);
     fclose(arqProv);
-    arq = fopen("../stock.txt", "w");
-    arqProv = fopen("../stock2.txt", "r");
+    arq = fopen("../database/stock.txt", "w");
+    arqProv = fopen("../database/stock2.txt", "r");
     for (int i = 1; i < n; i++) {
         fscanf(arqProv, "%s %f %d", produto, &price, &qtd);
         fprintf(arq, "%s %.2f %d\n", produto, price, qtd);
     }
     fclose(arqProv);
     fclose(arq);
-    remove("../stock2.txt");
+    remove("../database/stock2.txt");
 }
 
 Seller::Seller(const string& name, const string& office, float salary, const string& userName, const string& password) {

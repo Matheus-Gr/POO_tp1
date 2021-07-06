@@ -15,7 +15,8 @@ int main() {
     string password = "farel159";
 
     Seller seller = admin.register_seller(name,office,salary,userName,password);
-    cout << seller.getUserName() << endl << seller.getSalary() << endl;
+    seller.registerClient("tavin pica torta", "Rua do caralho, bairro da desgraca", "(31)98675-2831");
+    seller.productSale("maconha");
 
     admin.register_product("Piruzao",67.23,2);
     admin.addCash(10000);

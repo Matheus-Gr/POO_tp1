@@ -15,7 +15,7 @@ Seller Admin::register_seller(const string& name, const string& office, float sa
     fseek(file, 0, SEEK_END);
 
     stringstream ss;
-    ss << userName << " " << password << " " << "/seller " << name << " " << office << " " << salary;
+    ss << userName << " " << password << " " << "/seller" << name << " " << office << " " << salary;
     string report = ss.str();
     fputs(report.c_str(), file);
     fputs("\n",file);
@@ -26,10 +26,12 @@ Seller Admin::register_seller(const string& name, const string& office, float sa
 }
 
 void Admin::register_product(const string& productName, float price, int quantity) {
-    const char *FILENAME = "../stock.txt";
+    const char *FILENAME = "../database/stock.txt";
+    const char *TEMP = "../database/stock.txt";
 
-    FILE *file;
+    FILE *file, *temp;
     file = fopen(FILENAME, "r+");
+    file = fopen(TEMP, )
     fseek(file, 0, SEEK_END);
 
     stringstream ss;

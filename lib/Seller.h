@@ -36,7 +36,7 @@ public:
     string getUserName();
     string getPassword();
 
-    void registerClient(string name, string address, string phone);
+    void registerClient(const string& name, const string& address, const string& phone);
     void getClientList();
     void removerProduto(string nomeProduto, int quantidade = 1);
     void getEstoque();
