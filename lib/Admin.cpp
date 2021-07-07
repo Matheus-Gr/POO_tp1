@@ -4,6 +4,14 @@
 
 #include "Admin.h"
 
+Admin::Admin() {
+    _userName  = "admin";
+    _password = "admin";
+    _cash = 0;
+}
+float Admin::get_cash(){
+    return _cash;
+}
 
 Seller Admin::register_seller(const string& name, const string& office, float salary,
                               const string& userName, const string& password) {
@@ -25,39 +33,65 @@ Seller Admin::register_seller(const string& name, const string& office, float sa
     return newSeller;
 }
 
-void Admin::register_product(const string& productName, float price, int quantity) {
-    const char *FILENAME = "../database/stock.txt";
-    const char *TEMP = "../database/stock.txt";
+void Admin::register_product(const string& productName, float  buyPrice, float salePrice ,int quantity) {
+    if(get_cash() < buyPrice){
+        cout << "Saldo insuficiente para compra dos produtos";
+        return;
+    } else{
+        remove_cash(buyPrice);
+    }
 
-    FILE *file, *temp;
-    file = fopen(FILENAME, "r+");
-    file = fopen(TEMP, )
-    fseek(file, 0, SEEK_END);
+    FILE *stockFile, *tempFile, *resumeFile;
+    stockFile = fopen(STOCK_PATH, "r");
+    tempFile = fopen(TEMP_PATH, "w");
+    resumeFile = fopen(RESUME_PATH, "r+");
 
+    char tempProductName[100];
+    float tempPrice;
+    int tempQuantity;
+    int equal;
+    int validLine;
+    bool newProduct = true;
+
+    while(!feof(stockFile)){
+        validLine = fscanf(stockFile , "%s %f %d", tempProductName, &tempPrice, &tempQuantity);
+        if(validLine != -1){
+            equal = strcmp(tempProductName, productName.c_str());
+            if(!equal){
+                tempQuantity += quantity;
+                tempPrice = salePrice;
+                newProduct = false;
+            }
+            fprintf(tempFile, "%s %.2f %d\n", tempProductName, tempPrice, tempQuantity);
+        }
+    }
+
+    if(newProduct){
+        fprintf(tempFile, "%s %.2f %d\n", productName.c_str(), salePrice, quantity);
+    }
+
+    fseek(resumeFile, 0, SEEK_END);
     stringstream ss;
-    ss << productName << " " << price << " " << quantity;
-    string concatenateText = ss.str();
+    ss << "Reposicao no estoque de " << quantity << " " << productName << ", comprado por "
+       << buyPrice << " reais, preco de venda definida como " << salePrice << " reais.";
+    string report = ss.str();
+    fputs(report.c_str(), resumeFile);
+    fputs("\n",resumeFile);
+    fclose(resumeFile);
 
-    char productData[] = "";
-    strcpy(productData,concatenateText.c_str());
-    fputs(productData,file);
-    fputs("\n",file);
-
-    fclose(file);
+    fclose(stockFile);
+    fclose(tempFile);
+    remove(STOCK_PATH);
+    rename(TEMP_PATH, STOCK_PATH);
 }
 
-Admin::Admin() {
-    _userName  = "admin";
-    _password = "admin";
-    _cash = 0;
-}
 
-void Admin::addCash(float cash) { _cash += cash;}
+void Admin::add_cash(float cash) { _cash += cash;}
 
-void Admin::removeCash(float cash) { _cash -= cash;}
+void Admin::remove_cash(float cash) { _cash -= cash;}
 
 void Admin::billPayment(const string& valDate, float price, const string& description) {
-    if(_cash < price){
+    if(get_cash() < price){
         cout << "Nao ha saldo suficiente para realizar trasacao!";
         return;
     }else{
@@ -73,11 +107,10 @@ void Admin::billPayment(const string& valDate, float price, const string& descri
         }
     }
 
-    _cash -= price;
+    remove_cash(price);
 
-    const char *resume = "../resume.txt";
     FILE *file;
-    file = fopen(resume, "r+");
+    file = fopen(RESUME_PATH, "r+");
     fseek(file, 0, SEEK_END);
 
     stringstream ss;
@@ -87,5 +120,4 @@ void Admin::billPayment(const string& valDate, float price, const string& descri
     fputs("\n",file);
 
     fclose(file);
-
 }

@@ -14,12 +14,14 @@ int main() {
     string userName = "matobrabo@gmail.com";
     string password = "farel159";
 
+    admin.add_cash(1000);
+    cout << "Current cash: " << admin.get_cash() << endl;
     Seller seller = admin.register_seller(name,office,salary,userName,password);
-    seller.registerClient("tavin pica torta", "Rua do caralho, bairro da desgraca", "(31)98675-2831");
-    seller.productSale("maconha");
-
-    admin.register_product("Piruzao",67.23,2);
-    admin.addCash(10000);
-    admin.billPayment("01/07/2022",1000,"pagamento do agiota");
+//    seller.registerClient("tavin pica torta", "Rua do caralho, bairro da desgraca", "(31)98675-2831");
+//    seller.productSale("maconha");
+    admin.register_product("cogumelo", 20, 40);
+    cout << "Current cash: " << admin.get_cash() << endl;
+//    admin.addCash(10000);
+//    admin.billPayment("01/07/2022",1000,"pagamento do agiota");
     return 0;
 }

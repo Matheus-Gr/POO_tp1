@@ -5,6 +5,14 @@
 #include <cstring>
 #include "Seller.h"
 
+Seller::Seller(const string& name, const string& office, float salary, const string& userName, const string& password) {
+    _name = name;
+    _office = office;
+    _salary = salary;
+    _userName = userName;
+    _password = password;
+}
+
 void Seller::registerClient(const string& name, const string& address, const string& phone) {
     const char *clients = "../database/clients.txt";
     FILE *file;
@@ -60,7 +68,7 @@ void Seller::productSale(char *product, int quantity) {
                     cout <<produto << " ---> valor : " << price * quantity << endl;
                     cout << "confirmar compra(S ou N)?" << endl;
                     cin >> x;
-                    if (x == 'S' or 's') {
+                    if (x == 'S' or x == 's') {
                         qtd = qtd - quantity;
                         cout << "successo!" << endl;
                     } else cout<<"compra cancelada com sucesso"<<endl;
@@ -83,10 +91,4 @@ void Seller::productSale(char *product, int quantity) {
     remove("../database/stock2.txt");
 }
 
-Seller::Seller(const string& name, const string& office, float salary, const string& userName, const string& password) {
-    _name = name;
-    _office = office;
-    _salary = salary;
-    _userName = userName;
-    _password = password;
-}
+
