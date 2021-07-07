@@ -10,6 +10,7 @@
 #define CLIENTS_PATH "../database/clients.txt"
 #define ACCOUNTS_PATH "../database/accounts.txt"
 #define RESUME_PATH "../database/resume.txt"
+#define SERVICES_PATH "../database/services.txt"
 
 #include <iostream>
 #include <ctime>

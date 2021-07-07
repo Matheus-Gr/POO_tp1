@@ -9,21 +9,23 @@ Admin::Admin() {
     _password = "admin";
     _cash = 0;
 }
-float Admin::get_cash(){
-    return _cash;
-}
+
+void Admin::add_cash(float cash) { _cash += cash;}
+
+void Admin::remove_cash(float cash) { _cash -= cash;}
+
+float Admin::get_cash() {return _cash;}
 
 Seller Admin::register_seller(const string& name, const string& office, float salary,
                               const string& userName, const string& password) {
     Seller newSeller(name,office,salary,userName,password);
 
-    const char *accounts = "../database/accounts.txt";
     FILE *file;
-    file = fopen(accounts, "r+");
+    file = fopen(ACCOUNTS_PATH, "r+");
     fseek(file, 0, SEEK_END);
 
     stringstream ss;
-    ss << userName << " " << password << " " << "/seller" << name << " " << office << " " << salary;
+    ss << userName << " " << password << " seller " << name << " " << office << " " << salary;
     string report = ss.str();
     fputs(report.c_str(), file);
     fputs("\n",file);
@@ -84,11 +86,6 @@ void Admin::register_product(const string& productName, float  buyPrice, float s
     remove(STOCK_PATH);
     rename(TEMP_PATH, STOCK_PATH);
 }
-
-
-void Admin::add_cash(float cash) { _cash += cash;}
-
-void Admin::remove_cash(float cash) { _cash -= cash;}
 
 void Admin::billPayment(const string& valDate, float price, const string& description) {
     if(get_cash() < price){

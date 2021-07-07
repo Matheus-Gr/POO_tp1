@@ -13,10 +13,9 @@ Seller::Seller(const string& name, const string& office, float salary, const str
     _password = password;
 }
 
-void Seller::registerClient(const string& name, const string& address, const string& phone) {
-    const char *clients = "../database/clients.txt";
+void Seller::register_client(const string& name, const string& address, const string& phone) {
     FILE *file;
-    file = fopen(clients, "r+");
+    file = fopen(CLIENTS_PATH, "r+");
     fseek(file, 0, SEEK_END);
 
     stringstream ss;
@@ -28,29 +27,10 @@ void Seller::registerClient(const string& name, const string& address, const str
     fclose(file);
 }
 
-void Seller::getClientList() {
-    int numLines = 0;
-    ifstream in("../clients.txt");
-    string unused;
-    while (getline(in, unused)) {
-        ++numLines;
-    }
-}
-
-string Seller::getName() {return _name;}
-
-string Seller::getOffice() { return _office; }
-
-float Seller::getSalary() const { return _salary; }
-
-string Seller::getUserName() { return _userName; }
-
-string Seller::getPassword() { return _password; }
-
-void Seller::productSale(char *product, int quantity) {
-    FILE *arq, *arqProv;
-    arq = fopen("../database/stock.txt", "r");
-    arqProv = fopen("../database/stock2.txt", "w");
+void Seller::product_sale(char *product, int quantity) {
+    FILE *stockFile, *tempFile;
+    stockFile = fopen(STOCK_PATH, "r");
+    tempFile = fopen(TEMP_PATH, "w");
     int result;
     int n = 0;
     float price;
@@ -58,8 +38,8 @@ void Seller::productSale(char *product, int quantity) {
     char x;
     char produto[100];
     int flag=0;
-    while (!feof(arq)) {
-        result = fscanf(arq, "%s %f %d", produto, &price, &qtd);
+    while (!feof(stockFile)) {
+        result = fscanf(stockFile, "%s %f %d", produto, &price, &qtd);
         if (result) {
             if (strcmp(produto, product) == 0 && qtd > 0) {
                 if(quantity>qtd){
@@ -71,37 +51,55 @@ void Seller::productSale(char *product, int quantity) {
              
                     if (x == 'S' or x == 's') {
                         qtd = qtd - quantity;
-                        const char *resume = "../database/resume.txt";
-                        FILE *file;
-                        file = fopen(resume, "r+");
-                        fseek(file, 0, SEEK_END);
+
+                        FILE *resumeFile;
+                        resumeFile = fopen(RESUME_PATH, "r+");
+                        fseek(resumeFile, 0, SEEK_END);
 
                         stringstream ss;
                         ss <<quantity<< "x de " << product << " vendido por: " << price*quantity << "RS .";
                         string report = ss.str();
-                        fputs(report.c_str(), file);
-                        fputs("\n",file);
+                        fputs(report.c_str(), resumeFile);
+                        fputs("\n", resumeFile);
 
-                        fclose(file);
+                        fclose(resumeFile);
                         cout << "successo!" << endl;
                     } else cout<<"compra cancelada com sucesso"<<endl;
                 }
             }
-            fprintf(arqProv, "%s %.2f %d\n", produto, price, qtd);
+            fprintf(tempFile, "%s %.2f %d\n", produto, price, qtd);
         }
         n++;
     }
-    fclose(arq);
-    fclose(arqProv);
-    arq = fopen("../database/stock.txt", "w");
-    arqProv = fopen("../database/stock2.txt", "r");
-    for (int i = 1; i < n; i++) {
-        fscanf(arqProv, "%s %f %d", produto, &price, &qtd);
-        fprintf(arq, "%s %.2f %d\n", produto, price, qtd);
-    }
-    fclose(arqProv);
-    fclose(arq);
-    remove("../database/stock2.txt");
+    fclose(stockFile);
+    fclose(tempFile);
+    remove(STOCK_PATH);
+    rename(TEMP_PATH, STOCK_PATH);
+}
+
+void Seller::service_sale(const string& service, float price, const string& client) {
+    FILE *servicesFile, *resumeFile;
+    servicesFile = fopen(SERVICES_PATH,"r+");
+    resumeFile = fopen(RESUME_PATH, "r+");
+
+    fseek(servicesFile, 0, SEEK_END);
+    fseek(resumeFile, 0, SEEK_END);
+
+    stringstream ss, ss2;
+    ss << service << "|" << client << "|" << price;
+    string resume = ss.str();
+    fputs(resume.c_str(), servicesFile);
+    fputs("\n",servicesFile);
+
+    fclose(servicesFile);
+
+    ss2 << service << " para cliente " << client << " no valor de " << price << " reais.";
+    string report = ss2.str();
+    fputs(report.c_str(), resumeFile);
+    fputs("\n",resumeFile);
+
+    fclose(resumeFile);
+
 }
 
 

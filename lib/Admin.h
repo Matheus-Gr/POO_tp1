@@ -27,15 +27,9 @@ public:
     void add_cash(float cash);
     void remove_cash(float cash);
     float get_cash();
-
     Seller register_seller(const string& name, const string& office, float salary, const string& userName, const string& password);
     void register_product(const string& productName, float  buyPrice, float salePrice , int quantity = 1);
     void billPayment(const string& valDate, float price, const string& description);
-
-    void get_seller_list();
-    void buy_products();
-    void report_generate();
-
 };
 
 
