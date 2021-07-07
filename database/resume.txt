@@ -1,2 +1,1 @@
 Pagamento de conta no valor de 100 reais. Descricao: luz
-Reposicao no estoque de 1 cogumelo, comprado por 20 reais, preco de venda definida como 40 reais.
