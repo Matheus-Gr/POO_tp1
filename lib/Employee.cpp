@@ -3,9 +3,9 @@
 //
 
 #include <cstring>
-#include "Seller.h"
+#include "Employee.h"
 
-Seller::Seller(const string& name, const string& office, float salary, const string& userName, const string& password) {
+Employee::Employee(const string& name, const string& office, float salary, const string& userName, const string& password) {
     _name = name;
     _office = office;
     _salary = salary;
@@ -13,7 +13,7 @@ Seller::Seller(const string& name, const string& office, float salary, const str
     _password = password;
 }
 
-void Seller::register_client(const string& name, const string& address, const string& phone) {
+void Employee::register_client(const string& name, const string& address, const string& phone) {
     FILE *file;
     file = fopen(CLIENTS_PATH, "r+");
     fseek(file, 0, SEEK_END);
@@ -27,7 +27,7 @@ void Seller::register_client(const string& name, const string& address, const st
     fclose(file);
 }
 
-void Seller::product_sale(char *product, int quantity) {
+void Employee::product_sale(char *product, int quantity, const string& client) {
     FILE *stockFile, *tempFile;
     stockFile = fopen(STOCK_PATH, "r");
     tempFile = fopen(TEMP_PATH, "w");
@@ -57,7 +57,7 @@ void Seller::product_sale(char *product, int quantity) {
                         fseek(resumeFile, 0, SEEK_END);
 
                         stringstream ss;
-                        ss <<quantity<< "x de " << product << " vendido por: " << price*quantity << "RS .";
+                        ss <<quantity<< "x de " << product << " vendido por: " << price*quantity << "RS, para " << client;
                         string report = ss.str();
                         fputs(report.c_str(), resumeFile);
                         fputs("\n", resumeFile);
@@ -77,7 +77,7 @@ void Seller::product_sale(char *product, int quantity) {
     rename(TEMP_PATH, STOCK_PATH);
 }
 
-void Seller::service_sale(const string& service, float price, const string& client) {
+void Employee::service_sale(const string& service, float price, const string& client) {
     FILE *servicesFile, *resumeFile;
     servicesFile = fopen(SERVICES_PATH,"r+");
     resumeFile = fopen(RESUME_PATH, "r+");

@@ -4,7 +4,8 @@
 
 #include "Admin.h"
 
-Admin::Admin() {
+Admin::Admin(const string &name, const string &office, float salary, const string &userName,
+             const string &password) : Employee(name, office, salary, userName, password) {
     _userName  = "admin";
     _password = "admin";
     _cash = 0;
@@ -16,16 +17,16 @@ void Admin::remove_cash(float cash) { _cash -= cash;}
 
 float Admin::get_cash() {return _cash;}
 
-Seller Admin::register_seller(const string& name, const string& office, float salary,
-                              const string& userName, const string& password) {
-    Seller newSeller(name,office,salary,userName,password);
+Employee Admin::register_employee(const string& name, const string& office, float salary,
+                                const string& userName, const string& password) {
+    Employee newSeller(name,office,salary,userName,password);
 
     FILE *file;
     file = fopen(ACCOUNTS_PATH, "r+");
     fseek(file, 0, SEEK_END);
 
     stringstream ss;
-    ss << userName << " " << password << " seller " << name << " " << office << " " << salary;
+    ss << userName << " " << password << " " << office << " " << name << " " << salary;
     string report = ss.str();
     fputs(report.c_str(), file);
     fputs("\n",file);

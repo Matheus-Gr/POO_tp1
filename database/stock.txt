@@ -1,6 +1,8 @@
-maconha 10.00 85
+maconha 10.00 83000
 maconha25g 100.00 10
 pacoteira 50.00 104
 pinao 30.00 2
 lean 1.20 60
+cogumelo 40.00 30
+cogumelo 40.00 30
 cogumelo 40.00 30

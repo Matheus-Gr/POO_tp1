@@ -1,4 +1,2 @@
-Pagamento de conta no valor de 100 reais. Descricao: luz
-Tosa para cliente n/a no valor de 58.25 reais.
-Banho para cliente Otavio no valor de 8.5 reais.
-Reposicao no estoque de 1 cogumelo, comprado por 20 reais, preco de venda definida como 40 reais.
+1000x de maconha vendido por: 10000RS, para n/a
+bolar baseado para cliente Poze no valor de 2.5 reais.
