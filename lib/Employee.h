@@ -27,9 +27,21 @@ public:
 
     void register_client(const string& name, const string& address, const string& phone);
 
-    void product_sale(char * product, int quantity = 1, const string& client = "n/a");
+    void product_sale(char * product, int quantity, const string& client = "n/a");
 
     void service_sale(const string& service, float price, const string& client = "n/a");
+
+    void get_client_list();
+
+    void get_service_list();
+
+    void vet_service_resume(const string& petName, const string& report);
+
+    void set_name(const string& name);
+
+    string get_name();
+
+    void get_stock_list();
 };
 
 #endif //TP_I_EMPLOYEE_H

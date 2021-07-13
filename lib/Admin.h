@@ -17,20 +17,31 @@
 
 using namespace std;
 
-class Admin:public Employee {
+class Admin : public Employee {
 private:
     string _userName;
     string _password;
     float _cash;
 public:
     Admin(const string &name, const string &office, float salary, const string &userName,
-          const string &password);
+          const string &password, float cash);
+
     void add_cash(float cash);
-    void remove_cash(float cash);
+
+    void remove_cash(float value);
+
     float get_cash();
-    Employee register_employee(const string& name, const string& office, float salary, const string& userName, const string& password);
-    void register_product(const string& productName, float  buyPrice, float salePrice , int quantity = 1);
-    void billPayment(const string& valDate, float price, const string& description);
+
+    void register_employee(const string &name, const string &office, float salary, const string &userName,
+                           const string &password);
+
+    void register_product(const string &productName, float buyPrice, float salePrice, int quantity);
+
+    void billPayment(const string &valDate, float price, const string &description);
+
+    void set_cash(float cash);
+
+    void update_cash();
 };
 
 

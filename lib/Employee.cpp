@@ -5,101 +5,181 @@
 #include <cstring>
 #include "Employee.h"
 
-Employee::Employee(const string& name, const string& office, float salary, const string& userName, const string& password) {
-    _name = name;
+Employee::Employee(const string &name, const string &office, float salary, const string &userName,
+                   const string &password) {
+    set_name(name);
     _office = office;
     _salary = salary;
     _userName = userName;
     _password = password;
 }
 
-void Employee::register_client(const string& name, const string& address, const string& phone) {
+void Employee::register_client(const string &name, const string &address, const string &phone) {
     FILE *file;
     file = fopen(CLIENTS_PATH, "r+");
     fseek(file, 0, SEEK_END);
 
     stringstream ss;
-    ss << name << "|" << address << "|" << phone;
+    ss << name << " " << address << " " << phone;
     string report = ss.str();
     fputs(report.c_str(), file);
-    fputs("\n",file);
+    fputs("\n", file);
 
     fclose(file);
 }
 
-void Employee::product_sale(char *product, int quantity, const string& client) {
+void Employee::product_sale(char *product, int quantity, const string &client) {
     FILE *stockFile, *tempFile;
     stockFile = fopen(STOCK_PATH, "r");
     tempFile = fopen(TEMP_PATH, "w");
-    int result;
+
     int n = 0;
-    float price;
+    float price, totalValue;
     int qtd;
     char x;
     char produto[100];
-    int flag=0;
-    while (!feof(stockFile)) {
-        result = fscanf(stockFile, "%s %f %d", produto, &price, &qtd);
-        if (result) {
-            if (strcmp(produto, product) == 0 && qtd > 0) {
-                if(quantity>qtd){
-                    cout<<"estoque insulficiente"<<endl;
-                }else {
-                    cout <<produto << " ---> valor : " << price * quantity << endl;
-                    cout << "confirmar compra(S ou N)?" << endl;
-                    cin >> x;
-             
-                    if (x == 'S' or x == 's') {
-                        qtd = qtd - quantity;
+    while (fscanf(stockFile, "%s %f %d", produto, &price, &qtd) == 3) {
+        if (strcmp(produto, product) == 0 && qtd > 0) {
+            if (quantity > qtd) {
+                cout << "estoque insulficiente" << endl;
+            } else {
+                cout << produto << " ---> valor : " << price * quantity << endl;
+                cout << "confirmar compra(S ou N)?" << endl;
+                cin >> x;
 
-                        FILE *resumeFile;
-                        resumeFile = fopen(RESUME_PATH, "r+");
-                        fseek(resumeFile, 0, SEEK_END);
+                if (x == 'S' or x == 's') {
+                    qtd = qtd - quantity;
 
-                        stringstream ss;
-                        ss <<quantity<< "x de " << product << " vendido por: " << price*quantity << "RS, para " << client;
-                        string report = ss.str();
-                        fputs(report.c_str(), resumeFile);
-                        fputs("\n", resumeFile);
+                    FILE *resumeFile;
+                    resumeFile = fopen(RESUME_PATH, "r+");
+                    fseek(resumeFile, 0, SEEK_END);
 
-                        fclose(resumeFile);
-                        cout << "successo!" << endl;
-                    } else cout<<"compra cancelada com sucesso"<<endl;
-                }
+                    totalValue = price * quantity;
+
+                    stringstream ss;
+                    ss << get_name() << " vendeu " << product << " (" << quantity << "x) por: RS"
+                       << totalValue << ", para " << client << ".";
+                    string report = ss.str();
+                    fputs(report.c_str(), resumeFile);
+                    fputs("\n", resumeFile);
+
+                    fclose(resumeFile);
+                    cout << "successo!" << endl;
+                } else cout << "compra cancelada com sucesso!" << endl;
             }
-            fprintf(tempFile, "%s %.2f %d\n", produto, price, qtd);
         }
+        fprintf(tempFile, "%s %.2f %d\n", produto, price, qtd);
         n++;
     }
     fclose(stockFile);
     fclose(tempFile);
     remove(STOCK_PATH);
     rename(TEMP_PATH, STOCK_PATH);
+    add_balance(totalValue);
 }
 
-void Employee::service_sale(const string& service, float price, const string& client) {
+void Employee::service_sale(const string &service, float price, const string &client) {
     FILE *servicesFile, *resumeFile;
-    servicesFile = fopen(SERVICES_PATH,"r+");
+    servicesFile = fopen(SERVICES_PATH, "r+");
     resumeFile = fopen(RESUME_PATH, "r+");
 
     fseek(servicesFile, 0, SEEK_END);
     fseek(resumeFile, 0, SEEK_END);
 
     stringstream ss, ss2;
-    ss << service << "|" << client << "|" << price;
+    ss << service << " " << client << " " << price;
     string resume = ss.str();
     fputs(resume.c_str(), servicesFile);
-    fputs("\n",servicesFile);
+    fputs("\n", servicesFile);
 
     fclose(servicesFile);
 
-    ss2 << service << " para cliente " << client << " no valor de " << price << " reais.";
+    ss2 << get_name() << " vendeu " << service << " para cliente " << client << " no valor de RS" << price << ".";
     string report = ss2.str();
     fputs(report.c_str(), resumeFile);
-    fputs("\n",resumeFile);
+    fputs("\n", resumeFile);
 
     fclose(resumeFile);
+    add_balance(price);
+}
 
+void Employee::get_client_list() {
+    FILE *clientsFile;
+    clientsFile = fopen(CLIENTS_PATH, "r");
+
+    char ch, name[255];
+    cout << "----------------------\nClientes:\n";
+
+    while (fscanf(clientsFile, "%s", name) == 1) {
+        while ((ch = fgetc(clientsFile)) != EOF) {
+            if (ch == '\n') break;
+        }
+        cout << name << endl;
+    }
+    cout << "----------------------\n";
+
+    fclose(clientsFile);
+}
+
+void Employee::get_service_list() {
+    FILE *servicesFile;
+    servicesFile = fopen(SERVICES_PATH, "r");
+
+    char service[255], client[255];
+    float price;
+
+    while (fscanf(servicesFile, "%s %s %f", service, client, &price) == 3) {
+        cout << service << " para " << client << ". Valor: " << price << " reais.\n";
+    }
+    fclose(servicesFile);
+}
+
+void Employee::vet_service_resume(const string &petName, const string &report) {
+    FILE *vetResumeFile;
+    FILE *resumeFile;
+    vetResumeFile = fopen(VET_RESUME_PATH, "r+");
+    resumeFile = fopen(RESUME_PATH, "r+");
+    fseek(vetResumeFile, 0, SEEK_END);
+    fseek(resumeFile, 0, SEEK_END);
+
+    stringstream ss;
+    ss << petName << ": " << report;
+    string resume = ss.str();
+    fputs(resume.c_str(), vetResumeFile);
+    fputs("\n", vetResumeFile);
+
+    stringstream ss2;
+    ss2 << get_name() << " atendeu o pet " << petName << " e realizou o seguinte procedimento: " << report;
+    string resume2 = ss2.str();
+    fputs(resume2.c_str(), resumeFile);
+    fputs("\n", resumeFile);
+
+    fclose(vetResumeFile);
+    fclose(resumeFile);
+}
+
+void Employee::set_name(const string &name) {
+    _name = name;
+}
+
+string Employee::get_name() {
+    return _name;
+}
+
+void Employee::get_stock_list() {
+    FILE *stockFile;
+    stockFile = fopen(STOCK_PATH, "r");
+
+    char productName[255];
+    float price;
+    int quantity;
+    cout << "----------------------\nEstoque:\n";
+
+    while (fscanf(stockFile, "%s %f %d", productName, &price, &quantity) == 3) {
+        cout << productName << " RS" << price << " " << quantity << "x\n";
+    }
+    cout << "----------------------\n";
+    fclose(stockFile);
 }
 
 

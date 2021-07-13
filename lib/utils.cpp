@@ -12,3 +12,18 @@ string getDate(){
     string sDate(date);
     return sDate;
 }
+
+void add_balance(float value){
+    float currentCash;
+    FILE *adminFile;
+    adminFile = fopen(ADMIN_PATH,"r");
+    fscanf(adminFile,"%f",&currentCash);
+    fclose(adminFile);
+    currentCash += value;
+
+    ostringstream currentCashSs;
+    currentCashSs << currentCash;
+    adminFile = fopen(ADMIN_PATH,"w");
+    fputs(currentCashSs.str().c_str(), adminFile);
+    fclose(adminFile);
+}

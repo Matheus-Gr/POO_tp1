@@ -5,19 +5,32 @@
 #include "Admin.h"
 
 Admin::Admin(const string &name, const string &office, float salary, const string &userName,
-             const string &password) : Employee(name, office, salary, userName, password) {
+             const string &password, float cash) : Employee(name, office, salary, userName, password) {
     _userName  = "admin";
     _password = "admin";
-    _cash = 0;
+    set_cash(cash);
 }
 
 void Admin::add_cash(float cash) { _cash += cash;}
 
-void Admin::remove_cash(float cash) { _cash -= cash;}
+void Admin::remove_cash(float value) {
+    float currentCash;
+    currentCash = get_cash();
+    set_cash(currentCash - value);
+
+    FILE *adminFile;
+    adminFile = fopen(ADMIN_PATH, "w");
+
+    ostringstream currentCashSs;
+    currentCashSs << get_cash();
+    fputs(currentCashSs.str().c_str(), adminFile);
+
+    fclose(adminFile);
+}
 
 float Admin::get_cash() {return _cash;}
 
-Employee Admin::register_employee(const string& name, const string& office, float salary,
+void Admin::register_employee(const string& name, const string& office, float salary,
                                 const string& userName, const string& password) {
     Employee newSeller(name,office,salary,userName,password);
 
@@ -25,15 +38,12 @@ Employee Admin::register_employee(const string& name, const string& office, floa
     file = fopen(ACCOUNTS_PATH, "r+");
     fseek(file, 0, SEEK_END);
 
-    stringstream ss;
-    ss << userName << " " << password << " " << office << " " << name << " " << salary;
-    string report = ss.str();
-    fputs(report.c_str(), file);
+    stringstream report;
+    report << userName << " " << password << " " << office << " " << name << " " << salary;
+    fputs(report.str().c_str(), file);
     fputs("\n",file);
 
     fclose(file);
-
-    return newSeller;
 }
 
 void Admin::register_product(const string& productName, float  buyPrice, float salePrice ,int quantity) {
@@ -74,11 +84,10 @@ void Admin::register_product(const string& productName, float  buyPrice, float s
     }
 
     fseek(resumeFile, 0, SEEK_END);
-    stringstream ss;
-    ss << "Reposicao no estoque de " << quantity << " " << productName << ", comprado por "
-       << buyPrice << " reais, preco de venda definida como " << salePrice << " reais.";
-    string report = ss.str();
-    fputs(report.c_str(), resumeFile);
+    stringstream report;
+    report << "Reposicao no estoque de " << quantity << " " << productName << ", comprado por RS"
+       << buyPrice << ", preco de venda definida como RS" << salePrice << ".";
+    fputs(report.str().c_str(), resumeFile);
     fputs("\n",resumeFile);
     fclose(resumeFile);
 
@@ -90,7 +99,7 @@ void Admin::register_product(const string& productName, float  buyPrice, float s
 
 void Admin::billPayment(const string& valDate, float price, const string& description) {
     if(get_cash() < price){
-        cout << "Nao ha saldo suficiente para realizar trasacao!";
+        cout << "Nao ha saldo suficiente para realizar trasacao!\n";
         return;
     }else{
         int cDay, cMouth, cYear, eDay, eMouth, eYear;
@@ -100,22 +109,37 @@ void Admin::billPayment(const string& valDate, float price, const string& descri
         int currentTime = cDay + (cMouth*30) + (cYear*365);
         int expirationTime = eDay + (eMouth*30) + (eYear*365);
         if(currentTime > expirationTime){
-            cout << "Prazo para o pagamento em questao expirou!";
+            cout << "Prazo para o pagamento em questao expirou!\n";
             return;
         }
     }
 
     remove_cash(price);
 
+    cout << "cash: " << get_cash() << endl;
+    cout << "Trasacao realizada com sucesso!\n";
+
     FILE *file;
     file = fopen(RESUME_PATH, "r+");
     fseek(file, 0, SEEK_END);
 
-    stringstream ss;
-    ss << "Pagamento de conta no valor de " << price << " reais. Descricao: " << description << ".";
-    string report = ss.str();
-    fputs(report.c_str(), file);
+    stringstream report;
+    report << "Pagamento de conta no valor de RS" << price << ". Descricao: " << description << ".";
+    fputs(report.str().c_str(), file);
     fputs("\n",file);
 
     fclose(file);
+}
+
+void Admin::set_cash(float cash) {
+    _cash = cash;
+}
+
+void Admin::update_cash() {
+    FILE *adminFile;
+    float cash;
+    adminFile = fopen(ADMIN_PATH, "r");
+    fscanf(adminFile, "%f", &cash);
+    fclose(adminFile);
+    set_cash(cash);
 }
