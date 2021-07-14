@@ -8,10 +8,10 @@
 Employee::Employee(const string &name, const string &office, float salary, const string &userName,
                    const string &password) {
     set_name(name);
-    _office = office;
-    _salary = salary;
-    _userName = userName;
-    _password = password;
+    set_office(office);
+    set_salary(salary);
+    set_userName(userName);
+    set_password(password);
 }
 
 void Employee::register_client(const string &name, const string &address, const string &phone) {
@@ -128,9 +128,11 @@ void Employee::get_service_list() {
     char service[255], client[255];
     float price;
 
+    cout << "----------------------\n";
     while (fscanf(servicesFile, "%s %s %f", service, client, &price) == 3) {
-        cout << service << " para " << client << ". Valor: " << price << " reais.\n";
+        cout << service << " para " << client << ". Valor: " << price << " reais." << endl << endl;
     }
+    cout << "----------------------\n";
     fclose(servicesFile);
 }
 
@@ -162,6 +164,22 @@ void Employee::set_name(const string &name) {
     _name = name;
 }
 
+void Employee::set_office(const string &office) {
+    _office = office;
+}
+
+void Employee::set_salary(float salary) {
+    _salary = salary;
+}
+
+void Employee::set_userName(const string &userName) {
+    _userName = userName;
+}
+
+void Employee::set_password(const string &password) {
+    _password = password;
+}
+
 string Employee::get_name() {
     return _name;
 }
@@ -181,5 +199,6 @@ void Employee::get_stock_list() {
     cout << "----------------------\n";
     fclose(stockFile);
 }
+
 
 

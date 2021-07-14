@@ -1,9 +1,6 @@
-tavin vendeu anti-pulga (2x) por: RS50, para n/a.
-tavin vendeu tosa para cliente poze no valor de RS80.5.
-Borges atendeu o pet cleiton e realizou o seguinte procedimento: ranquei a pata fora, tava podrao
-tavin vendeu racao3kg (40x) por: RS1820, para n/a.
-tavin vendeu mamada para cliente jonas no valor de RS100.
-tavin vendeu anti-pulga (2x) por: RS50, para n/a.
-Inacio vendeu racao3kg (1x) por: RS45.5, para n/a.
-Borges atendeu o pet lulu e realizou o seguinte procedimento: arranquei o olho esquerdo e troquei por birosca.
-Pagamento de conta no valor de RS50. Descricao: pacoteira.
+Otavio vendeu Tosa para cliente Afonso no valor de RS59.9.
+Otavio vendeu racao3kg (2x) por: RS91, para n/a.
+Inacio vendeu Castracao para cliente Afonso no valor de RS329.8.
+Matheus atendeu o pet Lulu e realizou o seguinte procedimento: Castracao realizada com sucesso, sem demais complicacoes
+Reposicao no estoque de 100 whiskas, comprado por RS500, preco de venda definida como RS10.
+Pagamento de conta no valor de RS345.63. Descricao: Luz.

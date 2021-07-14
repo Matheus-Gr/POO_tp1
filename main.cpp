@@ -89,7 +89,7 @@ int main() {
                 } else if (user == "admin" and password == "admin") {
                     while (true) {
                         cout << "========================\n"
-                                "Fundos: " << admin.get_cash() << endl;
+                                "Saldo: " << admin.get_cash() << endl;
                         cout << "========================\n"
                                 "1) Cadastrar clientes\n"
                                 "2) Vender\n"
@@ -205,12 +205,16 @@ int main() {
                             cin >> comment;
                             admin.billPayment(valDate, price, comment);
                         } else if (option == 7) {
-                            FILE *resumeFile;
                             char line[255];
+                            FILE *resumeFile;
                             resumeFile = fopen(RESUME_PATH, "r");
+
+                            cout << "----------------------\n";
                             while (fgets(line, 255, resumeFile)) {
                                 cout << line << endl;
                             }
+                            cout << "----------------------\n";
+
                         } else if (option == 8){
                             break;
                         }

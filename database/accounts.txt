@@ -1,2 +1,2 @@
-tavin 159 seller tavin 1400
-bo bo123 vet Borges 2500.6
+vendedor senha159 seller Otavio 1400
+veterinario senha123 vet Matheus 2500

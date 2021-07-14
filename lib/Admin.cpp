@@ -6,12 +6,8 @@
 
 Admin::Admin(const string &name, const string &office, float salary, const string &userName,
              const string &password, float cash) : Employee(name, office, salary, userName, password) {
-    _userName  = "admin";
-    _password = "admin";
     set_cash(cash);
 }
-
-void Admin::add_cash(float cash) { _cash += cash;}
 
 void Admin::remove_cash(float value) {
     float currentCash;

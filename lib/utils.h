@@ -21,8 +21,12 @@
 
 using namespace std;
 
+// Responsavel por pegar a data atual
+// return: Data atual
 string getDate();
 
+// Responsavel por adicionar valor no saldo e guardar em disco o saldo
+// value: Valor do saldo
 void add_balance(float value);
 
 #endif //TP_I_UTILS_H

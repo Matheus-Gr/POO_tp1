@@ -1,7 +1,8 @@
-racao3kg 45.50 55
-bolinha 2.50 50
-shampoo 39.90 99
-coleira 8.90 80
-casinha 119.90 99
+racao3kg 45.50 98
+bolinha 2.50 120
+shampoo 39.90 40
+coleira 8.90 70
+casinha 119.90 50
 racao10kg 100.00 100
-anti-pulga 25.00 1
+anti-pulga 25.00 10
+whiskas 10.00 100
